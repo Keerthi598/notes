@@ -5,7 +5,7 @@ import { FolderViewComponent } from './folder-view/folder-view.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'sign-in',
         pathMatch: 'full',
     },
     {

@@ -35,16 +35,14 @@ export class FoldersComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    //this.getFolders();
-    this.folders = ["Default", "Hell"];
+    this.getFolders();
+    //this.folders = ["Default", "Hell"];
   }
 
   async getFolders() {
     (await this.folderService.getFolders()).subscribe(
       (response: UserFolder) => {
-        this.folders = response.names;
-        //console.log(this.folders);
-      },
+        this.folders = response.names;      },
       (error) => {
         console.error('Error');
       }
