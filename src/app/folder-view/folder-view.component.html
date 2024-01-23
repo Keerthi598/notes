@@ -1,0 +1,18 @@
+<div class="flex flex-row w-full">
+
+    <div *ngFor="let file of fileFolder.folder" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
+        <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
+            {{ file.folder }}
+        </div>
+
+        <div class="basis-3/5 font-light text-defText group-hover:text-actText duration-200">
+            {{ file.noteHead }}
+        </div>
+
+        <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
+            {{ file.date.nanoseconds }}
+        </div>
+
+    </div>
+
+</div>

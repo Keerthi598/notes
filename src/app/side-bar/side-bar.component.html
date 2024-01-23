@@ -1,0 +1,23 @@
+<div class="py-5 h-full">
+    <div class="p-5 bg-lgray h-full rounded-r-lg flex flex-col text-defText relative">
+        <div class="bg-white h-20 px-8 py-7">
+            Logo
+        </div>
+
+        <div class="Seperator my-5 w-full h-0.5 bg-lblack rounded-lg"></div>
+    
+        <div (click)="toggleDash()" [class.text-actText]="dashActive" class="Dashboard hover:text-actText duration-150 cursor-pointer my-1">
+            DashBoard
+        </div>
+
+        <div class="Seperator my-5 w-full h-0.5 bg-lblack rounded-lg"></div>
+
+        <div class="FoldersComp">
+            <app-folders (stateChange)="UpdateSideBar($event)"></app-folders>
+        </div>
+
+        <div class="BottomComp relative mt-auto mb-5">
+            <app-bottom-comp (stateChange)="UpdateSideBar($event)"></app-bottom-comp>
+        </div>    
+    </div>    
+</div>
