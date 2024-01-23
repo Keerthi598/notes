@@ -1,7 +1,10 @@
 <div class="flex flex-col w-full">
     
-    <div (click)="showFolder()" [class.text-actText]="visibleFolder" class="hover:text-actText duration-150 cursor-pointer my-1">
-        Folders 
+    <div (click)="showFolder()" [class.text-actText]="visibleFolder" class="hover:text-actText duration-150 cursor-pointer my-1 flex flex-row">
+        <div>
+            Folders
+        </div> 
+        <fa-icon icon="chevron-down" [class.fa-rotate-180]="visibleFolder" class="ml-auto duration-200"></fa-icon>
     </div>
 
     <div *ngIf="folders && folders.length > 0" [class.hidden]="!visibleFolder" >

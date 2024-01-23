@@ -5,11 +5,17 @@ import { UserFolder } from '../../dtos/userFolders.dto';
 import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule} from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-folders',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule],
+  imports: [
+    NgFor,
+    NgIf, 
+    FormsModule,
+    FontAwesomeModule,
+  ],
   providers: [FoldersService],
   templateUrl: './folders.component.html',
   styleUrl: './folders.component.css'
@@ -29,8 +35,8 @@ export class FoldersComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.getFolders();
-    //this.folders = ["Default", "Hell"];
+    //this.getFolders();
+    this.folders = ["Default", "Hell"];
   }
 
   async getFolders() {

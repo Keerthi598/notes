@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { DashComponent } from './dash/dash.component';
 import { FolderViewComponent } from './folder-view/folder-view.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +22,8 @@ import { FolderViewComponent } from './folder-view/folder-view.component';
     HomeComponent,
     LoginPageComponent,
     DashComponent,
-    FolderViewComponent
+    FolderViewComponent,
+    FontAwesomeModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -30,10 +34,10 @@ export class AppComponent {
   readonly ROOT_URL = 'https://jsonplaceholder.typicode.com/';
 
   posts: any;
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient,
+    library: FaIconLibrary) {
+      library.addIcons(faPlus);
+      library.addIcons(faChevronDown);
+    }
 
-  getPosts() {
-    this.posts = this.http.get(this.ROOT_URL + '/posts');
-    console.log(this.posts);
-  }
 }

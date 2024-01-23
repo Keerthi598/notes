@@ -5,33 +5,35 @@ import { UserFolder } from '../dtos/userFolders.dto';
 import { FolderFiles } from '../dtos/userFolderFiles.dto';
 import { NgFor } from '@angular/common';
 import { FolderViewService } from './folder-view.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'app-folder-view',
     standalone: true,
-    imports: [NgFor],
+    imports: [NgFor,
+    FontAwesomeModule],
     providers: [FolderViewService],
     templateUrl: './folder-view.component.html',
     styleUrl: './folder-view.component.css'
 })
 export class FolderViewComponent implements OnInit {
   folderName: string = "";
-  // fileFolder: FolderFiles = {
-  //   folder: [
-  //     {
-  //       "noteHead" : "Lorem ipsum is placeholder text commonly used in the graphic...",
-  //       "folder" : "Default",
-  //       "date" : {
-  //         "seconds" : 100,
-  //         "nanoseconds" : 1000,
-  //       },
-  //       "fileId" : "random.txt"
-  //     }
-  //   ]
-  // };
   fileFolder: FolderFiles = {
-    folder: []
+    folder: [
+      {
+        "noteHead" : "Lorem ipsum is placeholder text commonly used in the graphic...",
+        "folder" : "Default",
+        "date" : {
+          "seconds" : 100,
+          "nanoseconds" : 1000,
+        },
+        "fileId" : "random.txt"
+      }
+    ]
   };
+  // fileFolder: FolderFiles = {
+  //   folder: []
+  // };
 
   constructor(private route: ActivatedRoute,
     @Inject() private folderViewService: FolderViewService ) {}
@@ -39,8 +41,7 @@ export class FolderViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.folderName = params['folderName'];
-      console.log("Test");
-      this.fetchFiles();
+      //this.fetchFiles();
     });
   }
 
