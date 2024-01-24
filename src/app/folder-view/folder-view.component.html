@@ -1,6 +1,6 @@
-<div class="m-3.5 flex flex-row w-full">
+<div class="m-3.5 flex flex-row flex-wrap w-full">
 
-    <div *ngFor="let file of fileFolder.folder" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
+    <div (click)="navToFile(file.fileId, file.folder)" *ngFor="let file of fileFolder.folder" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
         <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
             {{ file.folder }}
         </div>
@@ -10,7 +10,7 @@
         </div>
 
         <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
-            {{ file.date.nanoseconds }}
+            {{ convertToDate(file.date.seconds, file.date.nanoseconds) }}
         </div>
 
     </div>

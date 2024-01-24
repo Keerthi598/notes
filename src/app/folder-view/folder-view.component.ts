@@ -7,6 +7,7 @@ import { UserFile } from '../dtos/userFile.dto';
 import { NgFor } from '@angular/common';
 import { FolderViewService } from './folder-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class FolderViewComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute,
-    @Inject() private folderViewService: FolderViewService ) {}
+    @Inject() private folderViewService: FolderViewService ,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -64,5 +66,15 @@ export class FolderViewComponent implements OnInit {
         console.log(response);
       } 
     );
+  }
+
+  async navToFile(fileId: string, folder: string) {
+    fileId = fileId.slice(0, -4);
+    this.router.navigate(['/home/folder' + '/' + folder, fileId]);
+  }
+
+  convertToDate(seconds: number, nanoseconds: number) {
+    const ts = (seconds + nanoseconds/1000000000) * 1000;
+    return new Date(ts).toDateString();
   }
 }
