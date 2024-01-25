@@ -12,7 +12,7 @@ import { FileViewComponent } from './file-view/file-view.component';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +44,7 @@ export class AppComponent {
     library: FaIconLibrary) {
       library.addIcons(faPlus);
       library.addIcons(faChevronDown);
+      library.addIcons(faFloppyDisk);
     }
 
 }
