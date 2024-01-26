@@ -6,10 +6,9 @@ export interface Date {
 export interface File {
     noteHead: string;
     folder: string;
-    fileId: string;
     date: Date;
 }
 
 export interface FolderFiles {
-    folder: File[];
+    folder: Record<string, File>;
 }

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserFolder } from '../dtos/userFolders.dto';
 import { FolderFiles } from '../dtos/userFolderFiles.dto';
 import { UserFile } from '../dtos/userFile.dto';
-import { NgFor } from '@angular/common';
+import { NgFor, CommonModule } from '@angular/common';
 import { FolderViewService } from './folder-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
     selector: 'app-folder-view',
     standalone: true,
     imports: [NgFor,
-    FontAwesomeModule],
+    FontAwesomeModule,
+    CommonModule],
     providers: [FolderViewService],
     templateUrl: './folder-view.component.html',
     styleUrl: './folder-view.component.css'
@@ -22,21 +23,34 @@ import { Router } from '@angular/router';
 export class FolderViewComponent implements OnInit {
   folderName: string = "";
   // fileFolder: FolderFiles = {
-  //   folder: [
-  //     {
+  //   folder: Map{
+  //     "this.txt" : {
   //       "noteHead" : "Lorem ipsum is placeholder text commonly used in the graphic...",
   //       "folder" : "Default",
   //       "date" : {
   //         "seconds" : 100,
   //         "nanoseconds" : 1000,
   //       },
-  //       "fileId" : "random.txt"
   //     }
-  //   ]
+  //   }
   // };
+  // fileFolder: FolderFiles = {
+  //   folder: Map<string, File> = {};
+  // }
+
+
   fileFolder: FolderFiles = {
-    folder: []
-  };
+    folder : {
+        "map" : {
+        noteHead: "DummyNote",
+        folder: "DummyFolder",
+        date: {
+          seconds: 500,
+          nanoseconds: 500,
+        },
+      }
+    }
+  }
 
   constructor(private route: ActivatedRoute,
     @Inject() private folderViewService: FolderViewService ,
@@ -63,7 +77,7 @@ export class FolderViewComponent implements OnInit {
   async createFile() {
     (await this.folderViewService.createFolder(this.folderName)).subscribe(
       response => {
-        console.log(response);
+        this.navToFile(response.fileId, this.folderName);
       } 
     );
   }

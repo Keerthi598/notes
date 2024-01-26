@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Inject } from '@nestjs/common';
 import { ActivatedRoute } from '@angular/router';
 import { FileViewService } from './file-view.service';
@@ -24,6 +24,12 @@ export class FileViewComponent implements OnInit {
   currFile = new File([""], "this.txt");
   currText: string = "";
 
+  @HostListener('window:keydown.control.s', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    event.preventDefault();
+
+    this.saveFile();
+  }
 
   constructor(private route: ActivatedRoute,
     private fileViewService: FileViewService) {}
