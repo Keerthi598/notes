@@ -1,0 +1,19 @@
+<div *ngIf="alert" class="flex flex-row w-full animate-popup">
+    <div class="p-4 mx-auto bg-lgray shadow rounded-md flex flex-col m-2">
+        <div *ngIf="alert.type == 'success' " class="text-green-400 font-semibold">
+            <fa-icon icon="check"></fa-icon>
+            Success
+        </div>
+
+        <div *ngIf="alert.type == 'fail' " class="text-rose-500 font-semibold">
+            <fa-icon icon="xmark"></fa-icon>
+            Fail
+        </div>
+
+        <div class="text-actText">
+            {{ alert.text }}
+        </div>
+    </div>
+    <div class="w-36 h-5 mr-5">     
+    </div>
+</div>

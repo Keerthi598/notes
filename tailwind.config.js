@@ -18,8 +18,21 @@ module.exports = {
         'lgray': '#232529',
         'defText': '#767676',
         'actText': '#d8d8d8',
+      },
+      keyframes: {
+        popup: {
+          '0%, 100%': { transform: 'translate(0%, 150%)' },
+          '20%, 80%': { transform: 'translate(0%, 0%)'},
+        }
+      },
+      animation: {
+        popup: 'popup 3.2s'
       }
     },
+    borderWidth: {
+      '1': '1px',
+      '2': '2px'
+    }
   },
   plugins: [],
 }

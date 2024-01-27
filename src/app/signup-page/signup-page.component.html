@@ -1,15 +1,15 @@
 <div class="flex h-full w-full items-center">
     <div class="h-auto w-11/12 max-w-[35rem] mx-auto p-10 bg-lgray text-actText flex flex-col  rounded-md">
+
         <div class="mt-2.5 mb-5 py-2.5 w-full grow flex items-center">
             <div class="ml-auto"></div>
-            <div class="text-lg font-semibold">Sign In</div>
+            <div class="text-lg font-semibold">Sign Up</div>
             <div class="mr-auto"></div>
         </div>
 
         <div class="relative my-3" data-te-input-wrapper-init>
             <input
                 type="email"
-                [class.border-rose-500]="incorrectPass"
                 class="peer block min-h-[auto] w-full rounded border-1 border-actText bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 focus:border-purple-500"
                 placeholder="Email address"
                 id="email-id-control"
@@ -26,7 +26,6 @@
         <div class="relative my-3" data-te-input-wrapper-init>
             <input
                 type="password"
-                [class.border-rose-500]="incorrectPass"
                 class="peer block min-h-[auto] w-full rounded border-1 border-actText bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 focus:border-purple-500"
                 placeholder="Password"
                 id="pass-control"
@@ -40,32 +39,19 @@
             </label>
         </div>
 
-        <div class="flex flex-col my-2 sm:flex-row">
-            <div [class.invisible]="!incorrectPass" class="text-rose-500">
-                Incorrect email/Password
-            </div>
-
-            <div class="mt-2 sm:ml-auto sm:mt-0 text-purple-400 cursor-pointer">
-                Forgot Password?
-            </div>
-        </div>
-
         <div class="my-3 w-full">
-            <button class="shadow w-full bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded duration-150" type="button"
-            (click)="login()">
-                <div [class.hidden]="!loadLogin" class="animate-spin inline-block w-3 h-3 border-[2px] border-current border-t-transparent rounded-full" role="status" aria-label="loading">
+            <button class="shadow w-full bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded duration-150" type="button">
+                <div class="invisible animate-spin inline-block w-3 h-3 border-[2px] border-current border-t-transparent rounded-full" role="status" aria-label="loading">
                 </div>
-                Sign In
+                Sign Up
             </button>
         </div>
 
-        <div class="flex flex-row">
-            <div class="text-actText">
-                Don't have an account?
-            </div>
-            <div (click)="navToSignUp()" class="ml-1 text-purple-400 cursor-pointer">
-                Sign Up
+        <div class="flex flex-row w-full">
+            <div (click)="navToLogin()" class="mx-auto text-purple-400 cursor-pointer">
+                Return to login
             </div>
         </div>
+
     </div>
 </div>

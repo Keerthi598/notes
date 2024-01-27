@@ -8,6 +8,7 @@ import { NgFor, CommonModule } from '@angular/common';
 import { FolderViewService } from './folder-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
+import { AlertComponent } from '../alert/alert.component';
 
 
 @Component({
@@ -15,35 +16,20 @@ import { Router } from '@angular/router';
     standalone: true,
     imports: [NgFor,
     FontAwesomeModule,
-    CommonModule],
+    CommonModule,
+    AlertComponent],
     providers: [FolderViewService],
     templateUrl: './folder-view.component.html',
     styleUrl: './folder-view.component.css'
 })
 export class FolderViewComponent implements OnInit {
   folderName: string = "";
-  // fileFolder: FolderFiles = {
-  //   folder: Map{
-  //     "this.txt" : {
-  //       "noteHead" : "Lorem ipsum is placeholder text commonly used in the graphic...",
-  //       "folder" : "Default",
-  //       "date" : {
-  //         "seconds" : 100,
-  //         "nanoseconds" : 1000,
-  //       },
-  //     }
-  //   }
-  // };
-  // fileFolder: FolderFiles = {
-  //   folder: Map<string, File> = {};
-  // }
-
 
   fileFolder: FolderFiles = {
     folder : {
         "map" : {
-        noteHead: "DummyNote",
-        folder: "DummyFolder",
+        noteHead: "Loading ...",
+        folder: "Loading ..",
         date: {
           seconds: 500,
           nanoseconds: 500,
@@ -69,7 +55,7 @@ export class FolderViewComponent implements OnInit {
         this.fileFolder = response;
       },
       (error) => {
-        console.error('Error');
+        console.log('Error');
       }
     );
   }
@@ -90,5 +76,10 @@ export class FolderViewComponent implements OnInit {
   convertToDate(seconds: number, nanoseconds: number) {
     const ts = (seconds + nanoseconds/1000000000) * 1000;
     return new Date(ts).toDateString();
+  }
+
+  convertToTime(seconds: number, nanoseconds: number) {
+    const ts = (seconds + nanoseconds/1000000000) * 1000;
+    return new Date(ts).toLocaleTimeString();
   }
 }

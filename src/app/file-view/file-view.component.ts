@@ -5,6 +5,9 @@ import { FileViewService } from './file-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule} from '@angular/forms';
 import { UserFileReceived } from '../dtos/userFileReceived.dto';
+import { AlertComponent } from '../alert/alert.component';
+import { AlertService } from '../alert/alert.service';
+import { AlertEnum } from '../alert/alert.enum';
 
 @Component({
   selector: 'app-file-view',
@@ -12,6 +15,7 @@ import { UserFileReceived } from '../dtos/userFileReceived.dto';
   imports: [
     FontAwesomeModule,
     FormsModule,
+    AlertComponent,
   ],
   providers: [FileViewService],
   templateUrl: './file-view.component.html',
@@ -23,6 +27,7 @@ export class FileViewComponent implements OnInit {
   fileId: string = "";
   currFile = new File([""], "this.txt");
   currText: string = "";
+  alertType: AlertEnum = AlertEnum.success;
 
   @HostListener('window:keydown.control.s', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -32,7 +37,8 @@ export class FileViewComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute,
-    private fileViewService: FileViewService) {}
+    private fileViewService: FileViewService,
+    private alertService: AlertService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -53,17 +59,31 @@ export class FileViewComponent implements OnInit {
   }
 
   async saveFile() {
-    (await this.fileViewService.upFile(
-      this.folderName,
-      this.fileId,
-      this.currText
-    )).subscribe(
-      response => {
-        console.log(response);
-      } 
-    );
-  }
+    // try {
+    //   (await this.fileViewService.upFile(
+    //     this.folderName,
+    //     this.fileId,
+    //     this.currText
+    //   )).subscribe(
+    //     response => {
+    //       this.alertService.setAlert({
+    //         type: AlertEnum.success,
+    //         text: "File Saved"
+    //       });
+    //     } 
+    //   );
+    // } catch {
+    //   this.alertService.setAlert({
+    //     type: AlertEnum.fail,
+    //     text: "File Not Saved"
+    //   });
+    // }
 
+    this.alertService.setAlert({
+      type: AlertEnum.fail,
+      text: "File Not Saved"
+    });
+  }
 }
 
 

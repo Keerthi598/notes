@@ -1,31 +1,35 @@
-<div class="m-3.5 flex flex-row flex-wrap w-full">
+<div class="relative">
+    <app-alert class="fixed bottom-5"></app-alert>
+    <div class="m-3.5 flex flex-row flex-wrap">
 
-    <div (click)="navToFile(entry.key, entry.value.folder)" *ngFor="let entry of fileFolder.folder | keyvalue" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
-        <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
-            {{ entry.value.folder }}
+        <div (click)="navToFile(entry.key, entry.value.folder)" *ngFor="let entry of fileFolder.folder | keyvalue" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
+            <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
+                {{ entry.value.folder }}
+            </div>
+
+            <div class="basis-3/5 font-light text-defText group-hover:text-actText duration-200">
+                {{ entry.value.noteHead }}
+            </div>
+
+            <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
+                {{ convertToDate(entry.value.date.seconds, entry.value.date.nanoseconds) }} <br>
+                {{ convertToTime(entry.value.date.seconds, entry.value.date.nanoseconds) }}
+            </div>
+
         </div>
 
-        <div class="basis-3/5 font-light text-defText group-hover:text-actText duration-200">
-            {{ entry.value.noteHead }}
-        </div>
-
-        <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
-            {{ convertToDate(entry.value.date.seconds, entry.value.date.nanoseconds) }}
+        <div (click)="createFile()" class="m-1.5 px-3 pb-3 w-40 h-48 bg-lgray text-defText hover:text-actText rounded-md flex flex-col group cursor-pointer duration-200">
+            <div class="text-lg mt-auto mb-1 flex flex-row">
+                <div class="mx-auto">
+                    New File
+                </div>
+            </div>
+            <div class="text-5xl mt-1 mb-auto flex flex-row">
+                <div class="mx-auto">
+                    <fa-icon icon="plus"></fa-icon>
+                </div>
+            </div>
         </div>
 
     </div>
-
-    <div (click)="createFile()" class="m-1.5 px-3 pb-3 w-40 h-48 bg-lgray text-defText hover:text-actText rounded-md flex flex-col group cursor-pointer duration-200">
-        <div class="text-lg mt-auto mb-1 flex flex-row">
-            <div class="mx-auto">
-                New File
-            </div>
-        </div>
-        <div class="text-5xl mt-1 mb-auto flex flex-row">
-            <div class="mx-auto">
-                <fa-icon icon="plus"></fa-icon>
-            </div>
-        </div>
-    </div>
-
 </div>

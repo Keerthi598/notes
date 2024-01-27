@@ -18,9 +18,11 @@ import { Router } from '@angular/router';
   host: {'class' : 'w-full'}
 })
 export class LoginPageComponent {
-  userName = "";
-  password = "";
+  userName: string = "";
+  password: string = "";
   http = inject(HttpClient);
+  incorrectPass: boolean = false;
+  loadLogin: boolean = false;
 
   constructor(
     @Inject() private loginService: LoginPageService, 
@@ -28,15 +30,19 @@ export class LoginPageComponent {
     ) {}
   
   async login() {
+    this.loadLogin = true;
     (await this.loginService.auth(this.userName, this.password)).subscribe(
       (response: UserAuth) => {
         // Handle the boolean response here
         if (response.message == false){
           this.loginFail();
+          this.loadLogin = false;
           return;
         }
+        this.incorrectPass = false;
         sessionStorage.setItem('token', response.access_token);
         this.router.navigate(['/home']);
+        this.loadLogin = false;
       },
       (error) => {
         // Handle errors if any
@@ -46,7 +52,12 @@ export class LoginPageComponent {
   }
 
   loginFail() {
-    console.log("Login Fail");
+    this.incorrectPass = true;
+  }
+
+  async navToSignUp() {
+    this.router.navigate(['/sign-up']);
+    return;
   }
 
 }

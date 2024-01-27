@@ -9,10 +9,12 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashComponent } from './dash/dash.component';
 import { FolderViewComponent } from './folder-view/folder-view.component';
 import { FileViewComponent } from './file-view/file-view.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faFloppyDisk, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { AlertComponent } from './alert/alert.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +30,8 @@ import { faChevronDown, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
     DashComponent,
     FolderViewComponent,
     FileViewComponent,
+    SignupPageComponent,
+    AlertComponent,
 
     FontAwesomeModule,
   ],
@@ -45,6 +49,7 @@ export class AppComponent {
       library.addIcons(faPlus);
       library.addIcons(faChevronDown);
       library.addIcons(faFloppyDisk);
+      library.addIcons(faCheck, faXmark);
     }
 
 }
