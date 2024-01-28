@@ -3,8 +3,13 @@
     <div class="m-3.5 flex flex-row flex-wrap">
 
         <div (click)="navToFile(entry.key, entry.value.folder)" *ngFor="let entry of fileFolder.folder | keyvalue" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
-            <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
-                {{ entry.value.folder }}
+            <div class="flex flex-row">
+                <div class="basis-1/5 font-light text-defText group-hover:text-actText duration-200">
+                    {{ entry.value.folder }}
+                </div>
+                <div [class.text-purple-500]="entry.value.favorite" class="ml-auto cursor-pointer text-defText hover:text-purple-500 duration-200">
+                    <fa-icon icon="star"></fa-icon>
+                </div>
             </div>
 
             <div class="basis-3/5 font-light text-defText group-hover:text-actText duration-200">

@@ -30,6 +30,7 @@ export class FolderViewComponent implements OnInit {
         "map" : {
         noteHead: "Loading ...",
         folder: "Loading ..",
+        favorite: false,
         date: {
           seconds: 500,
           nanoseconds: 500,

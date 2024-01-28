@@ -28,6 +28,7 @@ export class FileViewComponent implements OnInit {
   currFile = new File([""], "this.txt");
   currText: string = "";
   alertType: AlertEnum = AlertEnum.success;
+  isFavorite: boolean = false;
 
   @HostListener('window:keydown.control.s', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -52,38 +53,66 @@ export class FileViewComponent implements OnInit {
     var text = await new Response(this.currFile).text();
     (await this.fileViewService.getFile(this.folderName, this.fileId)).subscribe(
       response => {
-        this.currText = String.fromCharCode.apply(null, response.data);
+        this.currText = String.fromCharCode.apply(null, response.fileData.data);
+        this.isFavorite = response.fileMetaData.favorite;
       } 
     )   
     this.currText = text;
   }
 
   async saveFile() {
-    // try {
-    //   (await this.fileViewService.upFile(
-    //     this.folderName,
-    //     this.fileId,
-    //     this.currText
-    //   )).subscribe(
-    //     response => {
-    //       this.alertService.setAlert({
-    //         type: AlertEnum.success,
-    //         text: "File Saved"
-    //       });
-    //     } 
-    //   );
-    // } catch {
-    //   this.alertService.setAlert({
-    //     type: AlertEnum.fail,
-    //     text: "File Not Saved"
-    //   });
-    // }
+    try {
+      (await this.fileViewService.upFile(
+        this.folderName,
+        this.fileId,
+        this.currText,
+        this.isFavorite
+      )).subscribe(
+        response => {
+          this.alertService.setAlert({
+            type: AlertEnum.success,
+            text: "File Saved"
+          });
+        } 
+      );
+    } catch {
+      this.alertService.setAlert({
+        type: AlertEnum.fail,
+        text: "File Not Saved"
+      });
+    }
 
-    this.alertService.setAlert({
-      type: AlertEnum.fail,
-      text: "File Not Saved"
-    });
+    // this.alertService.setAlert({
+    //   type: AlertEnum.fail,
+    //   text: "File Not Saved"
+    // });
+  }
+
+  async favToggle() {
+    this.isFavorite = !this.isFavorite;
+    try {
+      (await this.fileViewService.toggleFavOn(
+        this.folderName,
+        this.fileId,
+        this.currText,
+        this.isFavorite
+      )).subscribe(
+        response => {
+          this.alertService.setAlert({
+            type: AlertEnum.success,
+            text: "Success"
+          });
+        } 
+      );
+    } catch {
+      this.alertService.setAlert({
+        type: AlertEnum.fail,
+        text: "File Not Saved"
+      });
+    } 
   }
 }
+
+
 
 

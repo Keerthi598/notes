@@ -12,7 +12,7 @@ import { FileViewComponent } from './file-view/file-view.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCheck, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown, faFloppyDisk, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { AlertComponent } from './alert/alert.component';
 
@@ -49,7 +49,7 @@ export class AppComponent {
       library.addIcons(faPlus);
       library.addIcons(faChevronDown);
       library.addIcons(faFloppyDisk);
-      library.addIcons(faCheck, faXmark);
+      library.addIcons(faCheck, faXmark, faStar);
     }
 
 }

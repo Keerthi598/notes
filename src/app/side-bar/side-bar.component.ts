@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { BottomCompComponent } from './bottom-comp/bottom-comp.component';
 import { FoldersComponent } from './folders/folders.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { Inject } from '@nestjs/common';
 
 @Component({
@@ -9,6 +10,7 @@ import { Inject } from '@nestjs/common';
   imports: [
     BottomCompComponent,
     FoldersComponent,
+    FavoritesComponent,
   ],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.css'
@@ -19,6 +21,7 @@ export class SideBarComponent implements OnInit {
   textn : string = "text-act";
   @ViewChild(BottomCompComponent) private bottomComp!: BottomCompComponent
   @ViewChild(FoldersComponent) private foldersComp!: FoldersComponent
+  @ViewChild(FavoritesComponent) private favoriteComp!: FavoritesComponent
 
   toggleDash() {
     this.UpdateSideBar(true);

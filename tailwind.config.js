@@ -22,7 +22,7 @@ module.exports = {
       keyframes: {
         popup: {
           '0%, 100%': { transform: 'translate(0%, 150%)' },
-          '20%, 80%': { transform: 'translate(0%, 0%)'},
+          '10%, 90%': { transform: 'translate(0%, 0%)'},
         }
       },
       animation: {

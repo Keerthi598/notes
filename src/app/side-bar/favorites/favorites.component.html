@@ -1,0 +1,29 @@
+<div class="flex flex-col w-full">
+
+    <div (click)="showFav()" [class.text-actText]="visibleFav" class="hover:text-actText duration-150 cursor-pointer my-1 flex flex-row">
+        <div>
+            Favorites
+        </div>
+        <fa-icon icon="chevron-down" [class.fa-rotate-180]="visibleFav" class="ml-auto duration-200"></fa-icon>
+    </div>
+
+    <div *ngIf="favFolder" [class.hidden]="!visibleFav" >
+        <ul>
+            <li (click)="navToFile(fav.key, fav.value.folder)" *ngFor="let fav of favFolder.folder| keyvalue" class="mb-4 p-1 bg-lblack rounded-md flex flex-col text-xs group cursor-pointer hover:text-actText duration-200">
+                <div class="">
+                    {{ fav.value.folder }}
+                </div>
+
+                <div class="line-clamp-3 my-2"> 
+                    {{ fav.value.noteHead }}
+                </div>
+
+                <div>
+                    {{ convertToDate(fav.value.date.seconds, fav.value.date.nanoseconds)}}<br>
+                    {{ convertToTime(fav.value.date.seconds, fav.value.date.nanoseconds)}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -7,6 +7,7 @@ export interface File {
     noteHead: string;
     folder: string;
     date: Date;
+    favorite: boolean;
 }
 
 export interface FolderFiles {

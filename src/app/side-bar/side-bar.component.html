@@ -1,5 +1,5 @@
 <div class="py-5 h-full">
-    <div class="p-5 bg-lgray h-full rounded-r-lg flex flex-col text-defText relative">
+    <div class="p-5 bg-lgray h-full rounded-r-lg flex flex-col text-defText relative overflow-scroll">
         <div class="bg-white h-20 px-8 py-7">
             Logo
         </div>
@@ -12,9 +12,14 @@
 
         <div class="Seperator my-5 w-full h-0.5 bg-lblack rounded-lg"></div>
 
-        <div class="FoldersComp">
+        <div class="FoldersComp my-1">
             <app-folders (stateChange)="UpdateSideBar($event)"></app-folders>
         </div>
+
+        <div class="FavoritesComp my-1">
+            <app-favorites (stateChange)="UpdateSideBar($event)"></app-favorites>
+        </div>
+
 
         <div class="BottomComp relative mt-auto mb-5">
             <app-bottom-comp (stateChange)="UpdateSideBar($event)"></app-bottom-comp>

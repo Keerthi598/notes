@@ -12,7 +12,7 @@ export class FoldersService {
 
     async getFolders() {
         const jwt = sessionStorage.getItem('token');
-        return this.http.post<UserFolder>(this.api_URL + "/user-dash",
+        return this.http.post<UserFolder>(this.api_URL + "/user-fol",
         {"access_token" : jwt});
     }
 

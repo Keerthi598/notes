@@ -36,7 +36,6 @@ export class FoldersComponent implements OnInit{
 
   ngOnInit(): void {
     this.getFolders();
-    //this.folders = ["Default", "Hell"];
   }
 
   async getFolders() {
@@ -51,7 +50,7 @@ export class FoldersComponent implements OnInit{
 
   showFolder() {
     this.visibleFolder = !this.visibleFolder;
-    this.activeFolder = "";
+    //this.activeFolder = "";
   }
 
   navigateToFolder(folderName: string): void {

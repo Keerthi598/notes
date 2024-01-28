@@ -6,7 +6,11 @@
                 {{ folderName }} /
             </div>
 
-            <div (click)="saveFile()" class="ml-auto cursor-pointer text-defText hover:text-actText duration-200">
+            <div (click)="favToggle()" [class.text-purple-500]="isFavorite" class="ml-auto mr-5 cursor-pointer text-defText hover:text-purple-500 duration-200">
+                <fa-icon icon="star"></fa-icon>
+            </div>
+
+            <div (click)="saveFile()" class="cursor-pointer text-defText hover:text-actText duration-200">
                 <fa-icon icon="floppy-disk"></fa-icon>
             </div>
             

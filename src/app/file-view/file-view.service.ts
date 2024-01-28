@@ -17,14 +17,27 @@ export class FileViewService {
         {"access_token" : jwt, "folder" : folderName, "fileId" : fileId});
     }
 
-    async upFile(folderName: string, fileId: string, content: string) {
+    async upFile(folderName: string, fileId: string, content: string, isFavorite: boolean) {
         const jwt = sessionStorage.getItem('token');
         return this.http.post(this.api_URL + '/upload-file',
         {
             "access_token" : jwt,
             "folder" : folderName,
             "fileId" : fileId,
-            "content" : content
+            "content" : content,
+            "isFavorite": isFavorite,
+        });
+    }
+
+    async toggleFavOn(folderName: string, fileId: string, content: string, isFavorite: boolean) {
+        const jwt = sessionStorage.getItem('token');
+        return this.http.post(this.api_URL + '/fav-this',
+        {
+            "access_token" : jwt,
+            "folder" : folderName,
+            "fileId" : fileId,
+            "content" : content,
+            "isFavorite": isFavorite,
         });
     }
 }
