@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { BottomCompComponent } from './bottom-comp/bottom-comp.component';
 import { FoldersComponent } from './folders/folders.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { Inject } from '@nestjs/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -23,17 +23,22 @@ export class SideBarComponent implements OnInit {
   @ViewChild(FoldersComponent) private foldersComp!: FoldersComponent
   @ViewChild(FavoritesComponent) private favoriteComp!: FavoritesComponent
 
+  constructor(
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {    
+  }
+
   toggleDash() {
     this.UpdateSideBar(true);
     this.dashActive = true;
+    this.router.navigate(['/home']);
   }
 
   UpdateSideBar(isChanged : boolean) {
     this.dashActive = false;
     this.bottomComp.toggleOff();
     this.foldersComp.toggleOff();
-  }
-
-  ngOnInit(): void {    
   }
 }
