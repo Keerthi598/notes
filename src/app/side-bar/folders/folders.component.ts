@@ -25,6 +25,7 @@ export class FoldersComponent implements OnInit{
   visibleFolder: boolean = true;
   activeFolder: string = "";
   newFolder: string = "";
+  newFolderError: boolean = false;
   
 
   @Output() stateChange : EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -41,7 +42,8 @@ export class FoldersComponent implements OnInit{
   async getFolders() {
     (await this.folderService.getFolders()).subscribe(
       (response: UserFolder) => {
-        this.folders = response.names;      },
+        this.folders = response.names; 
+      },
       (error) => {
         console.error('Error');
       }
@@ -67,18 +69,32 @@ export class FoldersComponent implements OnInit{
     //
     // Create Folder
     //
-    (await this.folderService.createFolders(this.newFolder)).subscribe(
-      (response: boolean) => {
-        this.getFolders();
-      }
-    );
+
+    if (this.newFolder == "Default" || this.newFolder == "favorites" || this.folders.includes(this.newFolder)) {
+      // Error
+      // Throw Alert
+      this.newFolderError = true;
+      console.log("Er");
+      return;
+    }
+
+    // (await this.folderService.createFolders(this.newFolder)).subscribe(
+    //   (response: boolean) => {
+    //     this.ReloadFolders();
+    //   }
+    // );
     
-    this.clearNewFol();
+    // this.clearNewFol();
   }
 
   clearNewFol(){
     this.newFolder = "";
+    this.newFolderError = false;
   }
 
+
+  ReloadFolders() {
+    this.getFolders();
+  }
 
 }

@@ -39,7 +39,6 @@ export class DashComponent implements OnInit {
     (await this.dashService.getDashFiles()).subscribe(
       response => {
         this.dashF = response;
-        console.log(response);
       },
       error => {
         //Need to do alert error ;_;

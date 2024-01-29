@@ -8,6 +8,7 @@ import { UserFileReceived } from '../dtos/userFileReceived.dto';
 import { AlertComponent } from '../alert/alert.component';
 import { AlertService } from '../alert/alert.service';
 import { AlertEnum } from '../alert/alert.enum';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-file-view',
@@ -17,7 +18,10 @@ import { AlertEnum } from '../alert/alert.enum';
     FormsModule,
     AlertComponent,
   ],
-  providers: [FileViewService],
+  providers: [
+    FileViewService,
+    AlertService,
+  ],
   templateUrl: './file-view.component.html',
   styleUrl: './file-view.component.css',
   host: {'class' : 'flex h-dvh'}
@@ -39,7 +43,8 @@ export class FileViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private fileViewService: FileViewService,
-    private alertService: AlertService) {}
+    //private alertService: AlertService,
+    private homeService: HomeService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -69,23 +74,18 @@ export class FileViewComponent implements OnInit {
         this.isFavorite
       )).subscribe(
         response => {
-          this.alertService.setAlert({
+          this.homeService.setCompAlert({
             type: AlertEnum.success,
             text: "File Saved"
           });
         } 
       );
     } catch {
-      this.alertService.setAlert({
+      this.homeService.setCompAlert({
         type: AlertEnum.fail,
         text: "File Not Saved"
       });
     }
-
-    // this.alertService.setAlert({
-    //   type: AlertEnum.fail,
-    //   text: "File Not Saved"
-    // });
   }
 
   async favToggle() {
@@ -98,14 +98,14 @@ export class FileViewComponent implements OnInit {
         this.isFavorite
       )).subscribe(
         response => {
-          this.alertService.setAlert({
+          this.homeService.setCompAlert({
             type: AlertEnum.success,
             text: "Success"
           });
         } 
       );
     } catch {
-      this.alertService.setAlert({
+      this.homeService.setCompAlert({
         type: AlertEnum.fail,
         text: "File Not Saved"
       });

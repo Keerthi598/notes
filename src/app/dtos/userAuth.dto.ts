@@ -1,4 +1,4 @@
-export class UserAuth{
-    access_token: string = "";
-    message: boolean = true;
+export interface UserAuth{
+    access_token: string;
+    message: string;
 }

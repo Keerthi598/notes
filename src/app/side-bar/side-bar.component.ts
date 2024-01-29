@@ -41,4 +41,10 @@ export class SideBarComponent implements OnInit {
     this.bottomComp.toggleOff();
     this.foldersComp.toggleOff();
   }
+
+
+  ReloadSideBar() {
+    this.favoriteComp.ReloadFav();
+    this.foldersComp.ReloadFolders();
+  }
 }

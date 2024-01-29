@@ -15,4 +15,5 @@ export class AlertService {
     getAlert(): Observable<AlertInterface> {
         return this.alert$.asObservable();
     }
+
 }

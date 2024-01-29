@@ -16,7 +16,7 @@ import { AlertService } from './alert.service';
   ],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css',
-  host: {'class' : 'bottom-5 w-full absolute'},
+  host: {'class' : 'bottom-5 w-full fixed z-10'},
 
 })
 export class AlertComponent implements OnInit {

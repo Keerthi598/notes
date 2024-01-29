@@ -75,4 +75,10 @@ export class FavoritesComponent implements OnInit {
     const ts = (seconds + nanoseconds/1000000000) * 1000;
     return new Date(ts).toLocaleTimeString();
   }
+
+
+
+  ReloadFav() {
+    this.getFavFolders();
+  }
 }

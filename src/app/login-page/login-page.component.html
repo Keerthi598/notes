@@ -42,7 +42,7 @@
 
         <div class="flex flex-col my-2 sm:flex-row">
             <div [class.invisible]="!incorrectPass" class="text-rose-500">
-                Incorrect email/Password
+                {{ errorMessage }}
             </div>
 
             <div class="mt-2 sm:ml-auto sm:mt-0 text-purple-400 cursor-pointer">
