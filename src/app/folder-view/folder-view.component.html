@@ -1,5 +1,4 @@
 <div class="relative">
-    <app-alert class="fixed bottom-5"></app-alert>
     <div class="m-3.5 flex flex-row flex-wrap">
 
         <div (click)="navToFile(entry.key, entry.value.folder)" *ngFor="let entry of fileFolder.folder | keyvalue" class="m-1.5 p-3 w-40 h-48 bg-lgray rounded-md flex flex-col group cursor-pointer">
@@ -16,9 +15,20 @@
                 {{ entry.value.noteHead }}
             </div>
 
-            <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
-                {{ convertToDate(entry.value.date.seconds, entry.value.date.nanoseconds) }} <br>
-                {{ convertToTime(entry.value.date.seconds, entry.value.date.nanoseconds) }}
+            <div class="flex flex-row relative">
+                <div class="mt-auto font-extralight text-sm text-defText group-hover:text-actText duration-200">
+                    {{ convertToDate(entry.value.date.seconds, entry.value.date.nanoseconds) }} <br>
+                    {{ convertToTime(entry.value.date.seconds, entry.value.date.nanoseconds) }}
+                </div>
+                <div (click)="showOptions($event)" class="group/sp ml-auto relative h-full" >
+                    <button (click)="showOptions($event)" class="group/sp text-defText h-full hover:text-actText duration-200 flex flex-col">
+                        <fa-icon icon="ellipsis-v" class="text-xl mt-auto"></fa-icon>
+                    </button>
+                    
+                    <div (click)="askDeleteConfirmation($event, entry.key, entry.value.favorite)" class="hidden group-hover/sp:block absolute rounded-lg p-1 bg-lblack text-defText hover:text-actText duration-200 -right-10 -bottom-8">
+                        Delete
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -23,4 +23,22 @@ export class FolderViewService {
         return this.http.post<UserFile>(this.api_URL + "/create-file",
         {"access_token" : jwt, "folder" : folderName});
     }
+
+    async deleteFile(
+        folderName: string,
+        fileId: string,
+        isFav: boolean
+        ) {
+            const jwt = sessionStorage.getItem('token');
+            return this.http.post<boolean>(
+                this.api_URL + "/delete-file",
+                {
+                    "access_token" : jwt,
+                    "folder" : folderName,
+                    "fileId" : fileId,
+                    "content" : "",
+                    "isFavorite" : isFav
+                }
+                )
+        }
 }

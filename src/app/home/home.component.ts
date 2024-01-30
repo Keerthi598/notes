@@ -6,6 +6,9 @@ import { AlertComponent } from '../alert/alert.component';
 import { AlertService } from '../alert/alert.service';
 import { HomeService } from './home.service';
 import { AlertInterface } from '../alert/alert.interface';
+import { DoubleCheckComponent } from '../double-check/double-check.component';
+import { DoubleCheckService } from '../double-check/double-check.service';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,8 +18,9 @@ import { AlertInterface } from '../alert/alert.interface';
     SideBarComponent,
     DashComponent,
     AlertComponent,
+    DoubleCheckComponent,
   ],
-  providers: [HomeService, AlertService],
+  providers: [HomeService, AlertService, DoubleCheckService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   host: {'class' : 'w-full'}
@@ -27,6 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private alertService: AlertService,
+    private doubleCheckService: DoubleCheckService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +40,18 @@ export class HomeComponent implements OnInit {
         this.alertService.setAlert(alert);
         this.sideBar.ReloadSideBar();
       }
+    );
+    this.homeService.getDeleteDCheck().subscribe(
+      deleteReq => {
+        this.doubleCheckService.setDelete(deleteReq);
+      }
     )
+    this.doubleCheckService.getDeleteConf().subscribe(
+      deleteCon => {
+        this.homeService.deleteConfirmation(deleteCon);
+      }
+    )
+
   }
 
 

@@ -2,16 +2,21 @@
     <!-- <app-alert></app-alert> -->
     <div class="p-5 h-full flex flex-col">
         <div class="my-4 text-actText text-lg flex flex-row">
-            <div>
+            <div (click)="navtoFolder()" class="text-defText hover:text-actText duration-200 cursor-pointer">
                 {{ folderName }} /
             </div>
 
-            <div (click)="favToggle()" [class.text-purple-500]="isFavorite" class="ml-auto mr-5 cursor-pointer text-defText hover:text-purple-500 duration-200">
+
+            <div (click)="favToggle()" [class.text-purple-500]="isFavorite" class="ml-auto mr-2.5 cursor-pointer text-defText hover:text-purple-500 duration-200">
                 <fa-icon icon="star"></fa-icon>
             </div>
 
-            <div (click)="saveFile()" class="cursor-pointer text-defText hover:text-actText duration-200">
+            <div (click)="saveFile()" class="mx-2.5 cursor-pointer text-defText hover:text-actText duration-200">
                 <fa-icon icon="floppy-disk"></fa-icon>
+            </div>
+
+            <div (click)="reqDelete()" class="mx-2.5 cursor-pointer text-defText hover:text-rose-700 duration-200">
+                <fa-icon icon="trash"></fa-icon>
             </div>
             
         </div>

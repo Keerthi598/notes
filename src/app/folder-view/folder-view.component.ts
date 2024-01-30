@@ -8,8 +8,8 @@ import { NgFor, CommonModule } from '@angular/common';
 import { FolderViewService } from './folder-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
-import { AlertComponent } from '../alert/alert.component';
-
+import { HomeService } from '../home/home.service';
+import { AlertEnum } from '../alert/alert.enum';
 
 @Component({
     selector: 'app-folder-view',
@@ -17,13 +17,17 @@ import { AlertComponent } from '../alert/alert.component';
     imports: [NgFor,
     FontAwesomeModule,
     CommonModule,
-    AlertComponent],
+    ],
     providers: [FolderViewService],
     templateUrl: './folder-view.component.html',
     styleUrl: './folder-view.component.css'
 })
 export class FolderViewComponent implements OnInit {
   folderName: string = "";
+  fileToBeDeleted: string = "";
+  fileToBeDelFav: boolean = false;
+  alertType: AlertEnum = AlertEnum.success;
+  sourceOfDeleteReq: boolean = false;
 
   fileFolder: FolderFiles = {
     folder : {
@@ -40,7 +44,8 @@ export class FolderViewComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute,
-    @Inject() private folderViewService: FolderViewService ,
+    @Inject() private folderViewService: FolderViewService,
+    private homeService: HomeService,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -48,6 +53,15 @@ export class FolderViewComponent implements OnInit {
       this.folderName = params['folderName'];
       this.fetchFiles();
     });
+    this.homeService.getDeleteCon().subscribe(
+      (resp) => {
+        if (resp) {
+          this.deleteConfirmed();
+        }
+        this.fileToBeDeleted = "";
+        this.sourceOfDeleteReq = false;
+      }
+    )
   }
 
   async fetchFiles() {
@@ -82,5 +96,59 @@ export class FolderViewComponent implements OnInit {
   convertToTime(seconds: number, nanoseconds: number) {
     const ts = (seconds + nanoseconds/1000000000) * 1000;
     return new Date(ts).toLocaleTimeString();
+  }
+
+  showOptions($event: Event) {
+    $event.stopPropagation();
+  }
+
+  askDeleteConfirmation($event: Event, fileId: string, isFav: boolean) {
+    $event.stopPropagation();
+    this.homeService.setDeleteDCheck(true);
+    this.fileToBeDeleted = fileId;
+    this.fileToBeDelFav = isFav;
+
+    this.sourceOfDeleteReq = true;
+  }
+
+  async deleteConfirmed() {
+    if (this.fileToBeDeleted == ""){
+      return;
+    }
+
+    //console.log("FolderView" + "/" + this.fileToBeDeleted + "/" + this.sourceOfDeleteReq);
+
+    if (!this.sourceOfDeleteReq) {
+      return;
+    }
+
+    //console.log("FolderView" + "/" + this.fileToBeDeleted);
+
+
+    this.sourceOfDeleteReq = false;
+
+    (await this.folderViewService.deleteFile(
+      this.folderName,
+      this.fileToBeDeleted,
+      this.fileToBeDelFav
+    )).subscribe(
+      
+      (resp) => {
+        if (resp) {
+          this.homeService.setCompAlert({
+            type: AlertEnum.success,
+            text: "File Deleted"
+          });
+          this.fetchFiles();
+          return;
+        }
+        
+        this.homeService.setCompAlert({
+          type: AlertEnum.fail,
+          text: "Failed, Try Again"
+        });
+      }
+      
+    )
   }
 }

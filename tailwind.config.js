@@ -18,6 +18,9 @@ module.exports = {
         'lgray': '#232529',
         'defText': '#767676',
         'actText': '#d8d8d8',
+        "warnText": '#e0a883',
+        'weirdBgIg': '#1f2937',
+        'weirdBgLight': '#374151',
       },
       keyframes: {
         popup: {

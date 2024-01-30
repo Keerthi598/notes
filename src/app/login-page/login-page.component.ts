@@ -50,6 +50,7 @@ export class LoginPageComponent {
       (error) => {
         // Handle errors if any
         this.loginFail("Error")
+        this.loadLogin = false;
       }
     );
   }

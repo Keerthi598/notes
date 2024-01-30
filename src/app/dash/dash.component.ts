@@ -5,6 +5,8 @@ import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { DashFiles, DashFile} from '../dtos/dashFiles.dto';
 import { Router } from '@angular/router';
 import { Inject } from '@nestjs/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 @Component({
@@ -13,7 +15,8 @@ import { Inject } from '@nestjs/common';
   imports: [
     DashFileComponent,
     NgFor, NgIf,
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ],
   templateUrl: './dash.component.html',
   styleUrl: './dash.component.css',

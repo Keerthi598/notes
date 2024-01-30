@@ -12,8 +12,8 @@ import { FileViewComponent } from './file-view/file-view.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPlus, faCheck, faStar } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown, faFloppyDisk, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCheck, faStar, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faFloppyDisk, faXmark, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { AlertComponent } from './alert/alert.component';
 
 @Component({
@@ -47,9 +47,9 @@ export class AppComponent {
   constructor(private http:HttpClient,
     library: FaIconLibrary) {
       library.addIcons(faPlus);
-      library.addIcons(faChevronDown);
-      library.addIcons(faFloppyDisk);
-      library.addIcons(faCheck, faXmark, faStar);
+      library.addIcons(faChevronDown, faTrash);
+      library.addIcons(faFloppyDisk, faTriangleExclamation);
+      library.addIcons(faCheck, faXmark, faStar, faEllipsisV);
     }
 
 }

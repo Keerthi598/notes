@@ -1,12 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Inject } from '@nestjs/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileViewService } from './file-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule} from '@angular/forms';
 import { UserFileReceived } from '../dtos/userFileReceived.dto';
-import { AlertComponent } from '../alert/alert.component';
-import { AlertService } from '../alert/alert.service';
 import { AlertEnum } from '../alert/alert.enum';
 import { HomeService } from '../home/home.service';
 
@@ -16,11 +14,9 @@ import { HomeService } from '../home/home.service';
   imports: [
     FontAwesomeModule,
     FormsModule,
-    AlertComponent,
   ],
   providers: [
     FileViewService,
-    AlertService,
   ],
   templateUrl: './file-view.component.html',
   styleUrl: './file-view.component.css',
@@ -33,6 +29,7 @@ export class FileViewComponent implements OnInit {
   currText: string = "";
   alertType: AlertEnum = AlertEnum.success;
   isFavorite: boolean = false;
+  sourceOfDelete: boolean = false;
 
   @HostListener('window:keydown.control.s', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -43,8 +40,8 @@ export class FileViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private fileViewService: FileViewService,
-    //private alertService: AlertService,
-    private homeService: HomeService) {}
+    private homeService: HomeService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -52,6 +49,14 @@ export class FileViewComponent implements OnInit {
       this.fileId = params['file'];
       this.loadFile();
     });
+    this.homeService.getDeleteCon().subscribe(
+      (resp) => {
+        if (resp) {
+          this.deleteConfirmed();
+        }
+        this.sourceOfDelete = false;
+      }
+    )
   }
 
   async loadFile() {
@@ -111,6 +116,52 @@ export class FileViewComponent implements OnInit {
       });
     } 
   }
+
+
+  reqDelete() {
+    this.homeService.setDeleteDCheck(true);
+    this.sourceOfDelete = true;
+  }
+
+  async deleteConfirmed() {
+    //console.log("FileView: " + this.folderName + "/" + this.currFile + "/" + this.sourceOfDelete );
+    if (!this.sourceOfDelete){
+      return;
+    }
+
+    //console.log("FileView: " + this.folderName + "/" + this.currFile );
+
+    this.sourceOfDelete = false;
+
+    (await this.fileViewService.deleteFile(
+      this.folderName,
+      this.fileId + ".txt",
+      this.isFavorite
+    )).subscribe(
+
+      (resp) => {
+        if (resp) {
+          this.homeService.setCompAlert({
+            type: AlertEnum.success,
+            text: "File Deleted"
+          });
+          this.router.navigate(['/home/folder', this.folderName]);
+          return;
+        }
+        
+        this.homeService.setCompAlert({
+          type: AlertEnum.fail,
+          text: "Failed, Try Again"
+        });
+      }
+    )
+  }
+
+
+  navtoFolder() {
+    this.router.navigate(['/home/folder', this.folderName]);
+  }
+
 }
 
 
