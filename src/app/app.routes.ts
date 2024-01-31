@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashComponent } from './dash/dash.component';
 import { FolderViewComponent } from './folder-view/folder-view.component';
 import { FileViewComponent } from './file-view/file-view.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,10 @@ export const routes: Routes = [
             {
                 path: 'folder/:folderName/:file',
                 component: FileViewComponent,
+            },
+            {
+                path: 'profile',
+                component: ProfileViewComponent
             }
         ]
     }

@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrl: './bottom-comp.component.css'
 })
 export class BottomCompComponent {
-  settingActive : boolean = false;
   profileActive : boolean = false;
 
   @Output() stateChange : EventEmitter<boolean> = new EventEmitter<boolean>;
@@ -18,19 +17,14 @@ export class BottomCompComponent {
     private router: Router
     ) {}
 
-  toggleSetting() {
-    this.stateChange.emit(true);
-    this.settingActive = true;
-  }
-
   toggleProfile() {
     this.stateChange.emit(true);
     this.profileActive = true;
+    this.router.navigate(['home/profile']);
   }
 
   toggleOff() {
     this.profileActive = false;
-    this.settingActive = false;
   }
 
   logout() {

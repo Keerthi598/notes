@@ -10,6 +10,7 @@ import { DashComponent } from './dash/dash.component';
 import { FolderViewComponent } from './folder-view/folder-view.component';
 import { FileViewComponent } from './file-view/file-view.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faCheck, faStar, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -32,6 +33,7 @@ import { AlertComponent } from './alert/alert.component';
     FileViewComponent,
     SignupPageComponent,
     AlertComponent,
+    ProfileViewComponent,
 
     FontAwesomeModule,
   ],
