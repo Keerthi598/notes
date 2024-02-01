@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Inject } from '@nestjs/common';
 import { ActivatedRoute } from '@angular/router';
 import { UserFolder } from '../dtos/userFolders.dto';
 import { FolderFiles } from '../dtos/userFolderFiles.dto';
@@ -29,6 +28,8 @@ export class FolderViewComponent implements OnInit {
   alertType: AlertEnum = AlertEnum.success;
   sourceOfDeleteReq: boolean = false;
 
+  folderDeleteHidden: boolean = true;
+
   fileFolder: FolderFiles = {
     folder : {
         "map" : {
@@ -44,7 +45,7 @@ export class FolderViewComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute,
-    @Inject() private folderViewService: FolderViewService,
+    private folderViewService: FolderViewService,
     private homeService: HomeService,
     private router: Router) {}
 
@@ -116,14 +117,9 @@ export class FolderViewComponent implements OnInit {
       return;
     }
 
-    //console.log("FolderView" + "/" + this.fileToBeDeleted + "/" + this.sourceOfDeleteReq);
-
     if (!this.sourceOfDeleteReq) {
       return;
     }
-
-    //console.log("FolderView" + "/" + this.fileToBeDeleted);
-
 
     this.sourceOfDeleteReq = false;
 
@@ -149,6 +145,47 @@ export class FolderViewComponent implements OnInit {
         });
       }
       
+    )
+  }
+
+
+  toggleFolderDelete() {
+    this.folderDeleteHidden = !this.folderDeleteHidden;
+  }
+
+
+  async deleteFolder() {
+    let isEmpty = true;
+
+    for (const key in this.fileFolder.folder) {
+      isEmpty = false;
+      break;
+    }
+
+    if (!isEmpty) {
+      this.homeService.setCompAlert({
+        type: AlertEnum.fail,
+        text: "Folder should be empty before deletion"
+      });
+      this.folderDeleteHidden = true;
+      return;
+    }
+
+    (await this.folderViewService.deleteFolder(this.folderName)).subscribe(
+      (resp) => {
+        if (resp) {
+          this.homeService.setCompAlert({
+            type: AlertEnum.success,
+            text: this.folderName + ": Successfully deleted"
+          });
+          this.router.navigate(['/home']);
+          return;
+        }
+        this.homeService.setCompAlert({
+          type: AlertEnum.fail,
+          text: "Error, Try Again"
+        });
+      }
     )
   }
 }

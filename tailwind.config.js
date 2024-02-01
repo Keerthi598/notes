@@ -24,12 +24,15 @@ module.exports = {
       },
       keyframes: {
         popup: {
-          '0%, 100%': { transform: 'translate(0%, 150%)' },
-          '10%, 90%': { transform: 'translate(0%, 0%)'},
+          '0%, 90%, 100%': { transform: 'translate(0%, 150%)' },
+          '7%, 83%': { transform: 'translate(0%, 0%)'},
         }
       },
       animation: {
-        popup: 'popup 3.2s'
+        popup: 'popup 3.3s'
+      },
+      inset: {
+        '8.25': '36px'
       }
     },
     borderWidth: {

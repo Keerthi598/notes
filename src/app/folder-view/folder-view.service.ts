@@ -41,4 +41,18 @@ export class FolderViewService {
                 }
                 )
         }
+
+
+    async deleteFolder(
+        folderName: string
+    ) {
+        const jwt = sessionStorage.getItem('token');
+            return this.http.post<boolean>(
+            this.api_URL + "/delete-folder",
+            {
+                "access_token" : jwt,
+                "folder" : folderName,
+            }
+            )
+    }
 }
