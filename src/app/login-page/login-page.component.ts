@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginPageService } from './login-page.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Inject } from '@nestjs/common';
 import { UserAuth } from '../dtos/userAuth.dto';
 import { Router } from '@angular/router';
 import { AuthError } from '../classes/authError.class';
@@ -27,7 +26,7 @@ export class LoginPageComponent {
   errorMessage: string = "";
 
   constructor(
-    @Inject() private loginService: LoginPageService, 
+    private loginService: LoginPageService, 
     private router: Router,
     private authError: AuthError
     ) {}
@@ -62,6 +61,11 @@ export class LoginPageComponent {
 
   async navToSignUp() {
     this.router.navigate(['/sign-up']);
+    return;
+  }
+
+  async navToForgotPass() {
+    this.router.navigate(['/forgot-pass']);
     return;
   }
 

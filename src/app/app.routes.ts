@@ -21,6 +21,11 @@ export const routes: Routes = [
             import('./signup-page/signup-page.component').then((m) => m.SignupPageComponent),
     },
     {
+        path: 'forgot-pass',
+        loadComponent: () => 
+            import('./reset-pass/reset-pass.component').then((m) => m.ResetPassComponent),
+    },
+    {
         path: 'home',
         loadComponent: () =>
             import('./home/home.component').then((m) => m.HomeComponent ),
