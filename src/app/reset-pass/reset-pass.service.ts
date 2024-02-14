@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ErrorCodeResp } from '../dtos/errorCodeResp.dto';
+import { ApiURL } from '../const/apiURL.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ResetPassService {
-    api_URL = "http://localhost:3000"; 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private apiConst: ApiURL 
+        ) {}
 
     async sendResetMail(email: string) {
-        return this.http.post<ErrorCodeResp>(this.api_URL + "/reset-pass",
+        return this.http.post<ErrorCodeResp>(this.apiConst.api_URL + "/reset-pass",
         {"email": email, "pass": ""});
     }
 }

@@ -17,6 +17,8 @@ import { faPlus, faCheck, faStar, faEllipsisV, faTrash } from '@fortawesome/free
 import { faChevronDown, faFloppyDisk, faXmark, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { AlertComponent } from './alert/alert.component';
 
+import { ApiURL } from './const/apiURL.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,

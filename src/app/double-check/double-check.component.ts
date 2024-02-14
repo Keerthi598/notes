@@ -16,6 +16,7 @@ import { NgIf } from '@angular/common';
 })
 export class DoubleCheckComponent implements OnInit {
   deleteFile?: boolean;
+  deleteAccount?: boolean;
 
   constructor(private doubleCheckService: DoubleCheckService) {
   }
@@ -24,6 +25,11 @@ export class DoubleCheckComponent implements OnInit {
     this.doubleCheckService.getDelete().subscribe(
       deleteReq => {
         this.deleteFile = deleteReq;
+      }
+    );
+    this.doubleCheckService.getAccDelete().subscribe(
+      accDelReq => {
+        this.deleteAccount = accDelReq;
       }
     )
   }
@@ -38,4 +44,18 @@ export class DoubleCheckComponent implements OnInit {
     this.doubleCheckService.confirmDelete(false);
     this.deleteFile = undefined;
   }
+
+  // Account Deletion
+
+  confirmAccountDelete() {
+    this.doubleCheckService.confirmAccountDelete(true);
+    this.deleteAccount = undefined;
+  }
+
+  declineAccountDelete() {
+    this.doubleCheckService.confirmAccountDelete(false);
+    this.deleteAccount = undefined;
+  }
+
+
 }

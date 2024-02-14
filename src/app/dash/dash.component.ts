@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DashFileComponent } from '../comp/dash-file/dash-file.component';
 import { DashService } from './dash.service';
 import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { DashFiles, DashFile} from '../dtos/dashFiles.dto';
 import { Router } from '@angular/router';
-import { Inject } from '@nestjs/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -13,7 +11,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   selector: 'app-dash',
   standalone: true,
   imports: [
-    DashFileComponent,
     NgFor, NgIf,
     CommonModule,
     FontAwesomeModule
@@ -31,7 +28,7 @@ export class DashComponent implements OnInit {
 
   constructor(
     private router: Router,
-    @Inject() private dashService: DashService
+    private dashService: DashService
   ) {}
 
   ngOnInit(): void {

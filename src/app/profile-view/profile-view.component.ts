@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { ProcessResponse } from '../dtos/processResponse.dto';
 import { HomeService } from '../home/home.service';
 import { AlertEnum } from '../alert/alert.enum';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,16 +29,29 @@ export class ProfileViewComponent implements OnInit {
   confirmNewPass: string = "";
 
   passError: boolean = false;
+  showResetPass: boolean = false;
 
-  showResetPass = false;
+  accountDelete?: boolean;
 
   constructor(
     private profileService: ProfileViewService,
     private homeService: HomeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getEmail();
+    this.homeService.getAccDeleteCon().subscribe(
+      deleteAcc => {
+        // Delete Account
+        if (deleteAcc) {
+          this.deleteAccount();
+          this.router.navigate(['/sign-in']);
+          
+        }
+        return;
+      }
+    )
   }
 
   async getEmail() {
@@ -90,5 +104,13 @@ export class ProfileViewComponent implements OnInit {
         });
       }
     )
+  }
+
+  async reqDeleteAccount() {
+    this.homeService.sendDeleteAccountReq(true);
+  }
+
+  async deleteAccount() {
+    (await this.profileService.deleteUser()).subscribe()
   }
 }

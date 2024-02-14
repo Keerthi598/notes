@@ -41,16 +41,29 @@ export class HomeComponent implements OnInit {
         this.sideBar.ReloadSideBar();
       }
     );
+    // Delete File
     this.homeService.getDeleteDCheck().subscribe(
       deleteReq => {
         this.doubleCheckService.setDelete(deleteReq);
       }
-    )
+    );
     this.doubleCheckService.getDeleteConf().subscribe(
       deleteCon => {
         this.homeService.deleteConfirmation(deleteCon);
       }
-    )
+    );
+
+    // Delete Account
+    this.homeService.getDeleteAccountReq().subscribe(
+      accDelReq => {
+        this.doubleCheckService.setAccDelete(accDelReq);
+      }
+    );
+    this.doubleCheckService.getAccountDelConf().subscribe(
+      deleteAccCon => {
+        this.homeService.deleteAccConfirmation(deleteAccCon);
+      }
+    );
 
   }
 

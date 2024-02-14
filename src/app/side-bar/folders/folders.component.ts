@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { Inject } from '@nestjs/common';
 import { FoldersService } from './folders.service';
 import { UserFolder } from '../../dtos/userFolders.dto';
 import { NgFor, NgIf } from '@angular/common';
@@ -31,7 +30,7 @@ export class FoldersComponent implements OnInit{
   @Output() stateChange : EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor(
-    @Inject() private folderService: FoldersService,
+    private folderService: FoldersService,
     private router: Router
   ) {}
 
@@ -78,13 +77,13 @@ export class FoldersComponent implements OnInit{
       return;
     }
 
-    // (await this.folderService.createFolders(this.newFolder)).subscribe(
-    //   (response: boolean) => {
-    //     this.ReloadFolders();
-    //   }
-    // );
+    (await this.folderService.createFolders(this.newFolder)).subscribe(
+      (response: boolean) => {
+        this.ReloadFolders();
+      }
+    );
     
-    // this.clearNewFol();
+    this.clearNewFol();
   }
 
   clearNewFol(){

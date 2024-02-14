@@ -8,6 +8,9 @@ export class DoubleCheckService {
     private deleteF$ = new Subject<boolean>();
     private deleteConf$ = new Subject<boolean>();
 
+    private deleteAccReq$ = new Subject<boolean>();
+    private deleteAccConf$ = new Subject<boolean>();
+
     setDelete(deleteCon: boolean): void {
         this.deleteF$.next(deleteCon);
     }
@@ -22,6 +25,25 @@ export class DoubleCheckService {
 
     getDeleteConf(): Observable<boolean> {
         return this.deleteConf$.asObservable();
+    }
+
+
+    // Account Deletion 
+
+    setAccDelete(deleteAcc: boolean): void {
+        this.deleteAccReq$.next(deleteAcc);
+    }
+
+    getAccDelete(): Observable<boolean> {
+        return this.deleteAccReq$.asObservable();
+    }
+
+    confirmAccountDelete(conf: boolean) {
+        this.deleteAccConf$.next(conf);
+    }
+
+    getAccountDelConf(): Observable<boolean> {
+        return this.deleteAccConf$.asObservable();
     }
     
 }

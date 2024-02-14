@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Inject } from '@nestjs/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -39,7 +38,7 @@ export class FavoritesComponent implements OnInit {
   @Output() stateChange : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
-    @Inject() private favoriteService: FavoriteService,
+    private favoriteService: FavoriteService,
     private router: Router
   ) {}
 

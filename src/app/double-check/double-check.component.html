@@ -23,3 +23,29 @@
         </div>
     </div>
 </div>
+<div *ngIf="deleteAccount" class="h-dvh w-full flex flex-row bg-black bg-opacity-90">
+    <div class="flex flex-col h-full mx-auto">
+        <div class="my-auto max-w-[35rem] flex flex-col py-6 px-8 bg-weirdBgIg rounded-lg">
+            <div class="text-center text-lg  text-actText my-1.5 font-semibold">
+                Confirm Account Deletion
+            </div>
+            <div class="text-md text-defText my-1.5" >
+                Are you sure you want to delete your account?<br>
+                All data associated with this account would be permanently deleted
+            </div>
+            <div class="text-md text-rose-700 my-2 p-3 bg-weirdBgLight rounded-md">
+                <fa-icon icon="triangle-exclamation"></fa-icon> Warning <br>
+                This action cannot be Undone
+            </div>
+            <div class="my-2 flex flex-row font-semibold">
+                <div (click)="declineAccountDelete()" class="text-center mr-auto px-4 py-2 text-actText bg-weirdBgLight bg-opacity-70 rounded-md hover:bg-opacity-100 duration-200 cursor-pointer">
+                    Go Back
+                </div>
+
+                <div (click)="confirmAccountDelete()" class="text-center ml-auto px-4 py-2 text-actText bg-rose-600 bg-opacity-70 rounded-md hover:bg-opacity-100 duration-200 cursor-pointer">
+                    Delete
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

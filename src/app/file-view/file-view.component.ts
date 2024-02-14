@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Inject } from '@nestjs/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileViewService } from './file-view.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

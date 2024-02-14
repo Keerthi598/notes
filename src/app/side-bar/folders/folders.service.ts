@@ -1,27 +1,29 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { UserFolder } from "../../dtos/userFolders.dto";
+import { ApiURL } from "../../const/apiURL.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FoldersService {
-    api_URL = "http://localhost:3000"; 
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private apiConst: ApiURL 
+        ) {}
 
     async getFolders() {
         const jwt = sessionStorage.getItem('token');
-        return this.http.post<UserFolder>(this.api_URL + "/user-fol",
+        return this.http.post<UserFolder>(this.apiConst.api_URL + "/user-fol",
         {"access_token" : jwt});
     }
 
     async createFolders(folderName: string) {
         const jwt = sessionStorage.getItem('token');
-        var response = this.http.post<boolean>("http://localhost:3000/create-folder",
+        var response = this.http.post<boolean>( this.apiConst.api_URL +  "/create-folder",
         {"access_token" : jwt, "folder" : folderName});
-        // this.http.post<UserFolder>(this.api_URL + "/user-dash",
-        // {"access_token" : jwt});
+
         return response;
     }
     

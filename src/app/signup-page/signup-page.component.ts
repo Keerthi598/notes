@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Inject } from '@nestjs/common';
 import { SignUpPageService } from './signup-page.service';
 import { UserAuth } from '../dtos/userAuth.dto';
 import { AuthError } from '../classes/authError.class';
@@ -27,7 +26,7 @@ export class SignupPageComponent {
 
 
   constructor(
-    @Inject() private signUpService: SignUpPageService,
+    private signUpService: SignUpPageService,
     private router: Router,
     private authError: AuthError
     ) {}
