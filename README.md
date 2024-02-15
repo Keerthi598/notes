@@ -42,7 +42,7 @@ The front end is hosted on AWS S3 buckets.
 
 The backend is deployed on a server on Google App Engine.
 
-[Frontend Repository]("https://github.com/Keerthi598/notes")
+[Frontend Repository](https://github.com/Keerthi598/notes)
 
 [Backend Repository]()
 
