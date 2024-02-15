@@ -49,3 +49,7 @@ The backend is deployed on a server on Google App Engine.
 ## Help 
 
 Contact rameshke@msu.edu 
+
+## License
+
+Notes Scribe is [MIT licensed]().
