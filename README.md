@@ -1,27 +1,51 @@
-# Notes
+# Notes Scribe
+     
+<img src = "src/assets/Logo.png" height="100">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+[Notes Scribe](https://notes-scribe.com) is a web app made for creating and organizing notes.
 
-## Development server
+It can be accessed through `https://notes-scribe.com`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<img src="src/assets/Screenshot 2024-02-14 at 17-04-59 Notes Srcibe.png">
 
-## Code scaffolding
+## About
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This notes web app is designed to streamline your organization process effortlessly. With intuitive features and a user-friendly interface, it's the perfect tool for keeping your notes in order.
 
-## Build
+## Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Frontend
+|       |  |
+| ----------- | ----------- |
+| <a href="https://angular.io/"><img src="https://angular.io/assets/images/logos/angular/angular.svg" width="30" /></a>           | Angular       |
+| <a href="https://tailwindcss.com/"><img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg" width = 30></a>   | Tailwind    |
+| <a href="https://aws.amazon.com/what-is-cloud-computing"><img src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" alt="Powered by AWS Cloud Computing" height = "20"></a>            | Aws      |
+|            |       |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Backend
+|        |  |
+| ----------- |  ------------ |
+| <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="30" alt="Nest Logo" /></a>| NestJS       |
+| <a href="https://cloud.google.com/?hl=en"><img src="https://lh3.googleusercontent.com/VEnnK2SyklusfxZ3dIYjlQH3xSwK2BFSJ69TFQ9g8HjM6m3CouRlTia5FW3z3GS0x83WC9TylZCaA9Jf_2kmr7mXxI9_HYLZTFy_bg" width = "30"></a> | Google Cloud |
+| <a href="https://firebase.google.com/" target="blank"><img src="https://firebase.google.com/static/downloads/brand-guidelines/SVG/logo-logomark.svg" height = 30></a> | FireBase |
+|            |       |
 
-## Running end-to-end tests
+### Design
+|        |  |
+| ----------- | ------------- |
+| <a href="https://www.figma.com"><img src="https://www.svgrepo.com/show/303210/figma-1-logo.svg" width="30" /></a>               | Figma         |
+| <img src="https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">  | Font Awesome  |
+|            |       |
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The front end is hosted on AWS S3 buckets.
 
-## Further help
+The backend is deployed on a server on Google App Engine.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[Frontend Repository]()
+
+[Backend Repository]()
+
+## Help 
+
+Contact rameshke@msu.edu 
