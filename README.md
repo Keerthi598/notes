@@ -44,8 +44,13 @@ The backend is deployed on a server on Google App Engine.
 
 [Frontend Repository](https://github.com/Keerthi598/notes)
 
-[Backend Repository]()
+[Backend Repository](https://github.com/Keerthi598/notes-back)
 
 ## Help 
 
 Contact rameshke@msu.edu 
+
+
+## License
+
+Nest is [MIT licensed](LICENSE).
