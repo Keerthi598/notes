@@ -8,6 +8,12 @@ It can be accessed through `https://notes-scribe.com`
 
 <img src="src/assets/Screenshot 2024-02-14 at 17-04-59 Notes Srcibe.png">
 
+--- 
+
+![Dashboard](NotesClips/Dashboard.gif)
+
+![Save File](NotesClips/SaveFile.gif)
+
 ## About
 
 This notes web app is designed to streamline your organization process effortlessly. With intuitive features and a user-friendly interface, it's the perfect tool for keeping your notes in order.
