@@ -19,7 +19,7 @@ This notes web app is designed to streamline your organization process effortles
 |       |  |
 | ----------- | ----------- |
 | <a href="https://angular.io/"><img src="https://angular.io/assets/images/logos/angular/angular.svg" width="30" /></a>           | Angular       |
-| <a href="https://tailwindcss.com/"><img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg" width = 30></a>   | Tailwind    |
+| <a href="https://tailwindcss.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width = 30></a>   | Tailwind    |
 | <a href="https://aws.amazon.com/what-is-cloud-computing"><img src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" alt="Powered by AWS Cloud Computing" height = "20"></a>            | Aws      |
 |            |       |
 
